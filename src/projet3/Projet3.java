@@ -6,7 +6,7 @@ public class Projet3 {
 
     public static void main(String[] args) {
       
-         mainmenu mainmenu1= new mainmenu();
+         mainmenu m1= new mainmenu();
     }
     
 }
