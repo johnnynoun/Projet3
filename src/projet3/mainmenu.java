@@ -257,7 +257,10 @@ public class mainmenu extends JFrame {
             }
 
             if (m52 == ob) {
-
+                
+                int result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirm Exit",
+                                JOptionPane.YES_NO_OPTION);
+                        if (result == JOptionPane.YES_OPTION)
                 System.exit(0);
             }
 
