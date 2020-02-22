@@ -1,37 +1,31 @@
 
 package projet3;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
 import java.awt.event.*;
 import java.awt.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 
 public class creemoda {
+   
+    JPanel p, rp, cc, tx, b, tp;
+                JLabel l1, l2, l3, l4, cl, e, e1, e2, e3, e4;
+                JButton b1, b2, b3;
+                JList t;
+                JTable table;
+                JTextField f1, f2, f3, f4;
+                JFrame frame;
+                
+                
     public creemoda(JFrame f){
         
         JFrame frame= f;
         frame.getContentPane().removeAll();
         
-        JPanel p, rp, cc, tx, b, tp;
-                JLabel l1, l2, l3, l4, cl, e, e1, e2, e3, e4;
-                JButton b1, b2, b3;
-                JTextArea t;
-                JTable table;
-                JTextField f1, f2, f3, f4;
+        
 
                 p = new JPanel(new BorderLayout());
                 frame.setLayout(new FlowLayout());
@@ -65,13 +59,16 @@ public class creemoda {
                 b1 = new JButton("Creer");
                 b2 = new JButton("Enregistrer");
                 b3 = new JButton("Quitter");
-
-                t = new JTextArea(15, 30);
+                
+                b1.addActionListener(new ButtonListener());
+                b3.addActionListener(new ButtonListener());
+                
+                t = new JList();
                 TitledBorder title1;
                 title1 = BorderFactory.createTitledBorder("Achats");
                 title1.setTitleJustification(TitledBorder.CENTER);
                 t.setBorder(title1);
-                t.setEditable(false);
+                t.setPreferredSize(new Dimension(330, 260));
 
                 e = new JLabel("                                                                                      ");
                 e1 = new JLabel("                                                                                      ");
@@ -142,4 +139,26 @@ public class creemoda {
                 frame.pack();
 
     }
+     public class ButtonListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent event) {
+            Object ob = event.getSource();
+           
+            if( ob == b1){
+                
+               f1.setText(null);
+               f2.setText(null);
+               f3.setText(null);
+               f4.setText(null);
+            }
+                
+            
+            if (ob== b3){
+              
+              quitter q = new quitter(frame);  
+            }
+            
+        }
+    }
+   
 }
