@@ -1,6 +1,6 @@
 package projet3;
 
-public class Fournisseur extends Compte {
+public  class Fournisseur extends Compte {
 
     public Fournisseur(String nmc, String v) {
         super(nmc, v);

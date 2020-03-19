@@ -1,26 +1,32 @@
 
 package projet3;
 
-import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import java.awt.event.*;
 import java.awt.*;
+import java.io.*;
+import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
-public class creemodcl {
+
+public class creemodcl extends Client{
     
    JPanel p, rp, cc, tx, b, tp;
                 JLabel l1, l2, l3, l4, e, e1, e2, e3, e4, e5, r;
                 JButton b1, b2, b3;
                 JList t;
-                JRadioButton r1, r2, r3;
+                JRadioButton mode, r1, r2, r3;
                 JTextField f1, f2, f4;
+                JComboBox <String> f3;
                 JTable table;
                 JFrame frame;
                 
-    public creemodcl(JFrame f){
+                
+    public creemodcl(JFrame f,String nmc, String v){
+        super(nmc, v);
+        
         JFrame frame = f;
         
          frame.getContentPane().removeAll();
@@ -49,16 +55,26 @@ public class creemodcl {
 
                 table.setEnabled(false);
 
-                l3 = new JLabel("         Ville     ");
+               l3 = new JLabel("         Ville     ");
 
-                JComboBox<String> f3 = new JComboBox<>();
+                
+               f3 = new JComboBox <>();
+              
                 f3.addItem("                                               ");
-
+                f3.addItem("Batroun");
+                f3.addItem("Beyrouth");
+                f3.addItem("Jbeil");
+                f3.addItem("Jounieh");
+                f3.addItem("Sayda");
+                f3.addItem("Sour");
+                f3.addItem("Tripoli");
+            
                 b1 = new JButton("Creer");
                 b2 = new JButton("Enregistrer");
                 b3 = new JButton("Quitter");
                 
                 b1.addActionListener(new ButtonListener()); 
+                b2.addActionListener(new ButtonListener()); 
                 b3.addActionListener(new ButtonListener());
 
                 t = new JList();
@@ -85,6 +101,7 @@ public class creemodcl {
 
                 f4 = new JTextField(15);
 
+               
                 r = new JLabel("Etat Compte   ");
 
                 r1 = new JRadioButton("Actif", true);
@@ -95,6 +112,7 @@ public class creemodcl {
                 mode.add(r2);
                 mode.add(r3);
 
+               
                 TitledBorder title2;
 
                 title2 = BorderFactory.createTitledBorder("Infos Clients");
@@ -147,28 +165,79 @@ public class creemodcl {
 
                 frame.setVisible(true);
                 frame.pack();
+       
 
     }
-    
+
        public class ButtonListener implements ActionListener {
+      
 
         public void actionPerformed(ActionEvent event) {
             Object ob = event.getSource();
            
             if (ob == b1){
-                
+               
+             b1.setEnabled(false);
+               f1.setEnabled(false);
+               String nomc= f2.getText();
+               String v =f3.getSelectedItem().toString();
+               f4.setEnabled(false);
+         
+              
+               
+               Compte c = new Compte(nomc, v) {
+                   
+                    public int compareTo(Object t) {
+                            throw new UnsupportedOperationException("Not supported yet.");
+                    }
+            };
+             c.toString(f1, f2, f4);
+               
+            }  
+           if (ob== b2){
+            
+               b1.setEnabled(true);
+               ArrayList<String> clients= new ArrayList<String>();
+               clients.add(f1.getText());
+               clients.add(f2.getText());
+               clients.add(f3.getSelectedItem().toString());  
+               clients.add(f4.getText());
+           
+               ArrayList<ArrayList> clientss = new ArrayList<ArrayList>();
+               clientss.add(clients);
+               
+               String liste= clientss.get(0).toString();
+              try{
+                   FileWriter writer = new FileWriter("creemodcl"+f1.getText()+".txt", true);
+                   writer.write(System.getProperty("line.separator"));
+                   writer.write(liste);
+                   
+                   writer.close();
+                   
+                   JOptionPane.showMessageDialog(frame, "Succes");
+   
+               }catch(Exception e){
+                   JOptionPane.showMessageDialog(frame, "Error");
+               }
+               
                f1.setText(null);
                f2.setText(null);
+               f3.setSelectedIndex(0);
                f4.setText(null);
-            }
-            
-            
+             
+               
+           }
+           
             if (ob== b3){
               
               quitter q = new quitter(frame);  
             }
+           
             
-        }
-    }
+          
     
+        }
+       }
+      
+       
 }

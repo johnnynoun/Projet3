@@ -2,7 +2,7 @@
 package projet3;
 
 
-public class Client extends Compte{
+public  class Client extends Compte{
     
     public Client( String nmc, String v) {
         super(nmc, v);

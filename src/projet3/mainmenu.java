@@ -96,6 +96,7 @@ public class mainmenu extends JFrame {
         m52 = new JMenuItem("Quitter");
         m5.add(m51);
         m5.add(m52);
+        m51.addActionListener(new MenuListener());
         m52.addActionListener(new MenuListener());
         b = new JMenuBar();
         b.add(m1);
@@ -104,7 +105,7 @@ public class mainmenu extends JFrame {
         b.add(m4);
         b.add(m5);
         frame.setJMenuBar(b);
-        frame.setSize(600, 400);
+        frame.setSize(850, 650);
         frame.setVisible(true);
     }
 
@@ -125,7 +126,8 @@ public class mainmenu extends JFrame {
             if (ob == i13) {
 
                 creemoda cma = new creemoda(frame);
-
+            
+                
             }
 
             // *********************************************************          
@@ -152,17 +154,23 @@ public class mainmenu extends JFrame {
             // *********************************************************    
             //Comptes Clients  
             if (ob == i21) {
-
-                creemodcl cmcl = new creemodcl(frame);
-
+                String s,ss;
+                s= "";
+                ss="";
+                creemodcl cmcl = new creemodcl(frame, s, ss);
+                
+               
+                
             }
 
             // *********************************************************  
             // *********************************************************    
             //Comptes Fournisseurs
             if (ob == i23) {
-
-                creemodf cmf = new creemodf(frame);
+                String s,ss;
+                s= "";
+                ss="";
+                creemodf cmf = new creemodf(frame, s, ss);
 
             }
 
@@ -256,14 +264,26 @@ public class mainmenu extends JFrame {
 
             }
 
+            
+            if(m51 ==ob) {
+                
+                System.out.println("Welcome! You are using the latest version v 1.0.1 of our test program");
+            }
+            
+            
+            
             if (m52 == ob) {
                 
-                int result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirm Exit",
+                 int result = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirm Exit",
                                 JOptionPane.YES_NO_OPTION);
                         if (result == JOptionPane.YES_OPTION)
-                System.exit(0);
+                            System.exit(0);
             }
 
+            
         }
+        
+        
     }
 }
+
