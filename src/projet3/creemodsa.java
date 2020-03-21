@@ -9,7 +9,7 @@ import java.awt.*;
 import javax.swing.table.DefaultTableModel;
 
 
-public class creemodsa {
+public class creemodsa extends Article{
     
    JPanel p, rp, cc, tx, b, tp;
    JLabel l1, l2, l3, l4, l5, l6, cl, e, e1, e2, e3, e4, e5;
@@ -19,10 +19,11 @@ public class creemodsa {
    JTextField f1, f2, f3, f4, f5, f6;   
     JFrame frame;
     
-    public creemodsa(JFrame f){
-        JFrame frame = f;
+    public creemodsa(JFrame f,int ns, int na, String noma, int qus, Double pv, Double ca, Double tpf){
+        super(ns, na, noma, qus, pv, ca, tpf);
         
-    frame.getContentPane().removeAll();
+        JFrame frame = f;
+             frame.getContentPane().removeAll();
 
 
                 p = new JPanel(new BorderLayout());
@@ -58,6 +59,7 @@ public class creemodsa {
                 b3 = new JButton("Quitter");
             
             b1.addActionListener(new ButtonListener());    
+            b2.addActionListener(new ButtonListener());
             b3.addActionListener(new ButtonListener());
                 
                 t = new JList();
@@ -153,21 +155,23 @@ public class creemodsa {
         public void actionPerformed(ActionEvent event) {
             Object ob = event.getSource();
             
-            if(ob == b1) {
-               
-               f1.setText(null);
-               f2.setText(null);
-               f3.setText(null);
-               f4.setText(null);
-               f5.setText(null);
-               f6.setText(null);
+              if (ob == b1){
               
+               
             }
+            
+             if (ob == b2){
+              
+               
+            }
+            
+         
             
             
             if (ob== b3){
               
               quitter q = new quitter(frame);  
+              
             }
             
             

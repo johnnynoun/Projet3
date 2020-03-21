@@ -22,6 +22,17 @@ import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 
 public class rapppa {
+    
+     JPanel p, up, sp, ce, np, tp;
+     JLabel l1, l2, e, e1, e2, e3, e4, e5, e6, e7, cl, r;
+     JButton b1, b2;
+     JRadioButton r1, r2, r3;
+     JTextField f1, f2;
+     JTable table;
+     JFrame frame;
+     
+
+    
     public rapppa(JFrame f){
         JFrame frame = f;
         
@@ -62,6 +73,8 @@ public class rapppa {
 
                 b1 = new JButton("Quitter");
                 b2 = new JButton("OK");
+                
+                b1.addActionListener(new ButtonListener());
 
                 l1 = new JLabel("        De date");
                 l2 = new JLabel("                    A date");
@@ -134,6 +147,17 @@ public class rapppa {
                 frame.setVisible(true);
                 frame.pack();
         
+    }
+        public class ButtonListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent event) {
+            Object ob = event.getSource();
+            if (ob== b1){
+              
+              quitter q = new quitter(frame);  
+            }
+            
+        }
     }
     
 }

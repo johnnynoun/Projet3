@@ -1,26 +1,39 @@
 package projet3;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.swing.JTextField;
 
-public class Recu extends Transactioncl {
+public abstract class Recu implements Serializable, Comparable {
 
-    public Recu(String mp, int ns, String des, Date dt, int nt, double m, Client cl) {
+   
+    private static int norecu=-1;
+    private String description;
+    private Date dateRecu;
+    private double montant;
 
-        super(mp, ns, des, dt, nt, m, cl);
+    public Recu(String dt, String cln) {
+    norecu++;
+    description=dt;
+    montant=0.0;
+      
 
     }
 
-    public String toString() {
-        return super.toString();
+    public void toString(JTextField nv, JTextField dt, JTextField s) {
+        nv.setText(norecu + "");
+       dt.setText(description+"Recu pour numero "+"<<"+norecu+">>");
+        s.setText(montant + "");
     }
 
+    
     public void miseAJourCompte() {
-        super.miseAJourCompte();
+        
     }
 
-    @Override
-    public int compareTo(Object t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+   
+    public void compareTo() {
+        
     }
 
 }

@@ -176,7 +176,7 @@ public class creemodf extends Fournisseur{
                f1.setEnabled(false);
                String nomc= f2.getText();
                String v =f3.getSelectedItem().toString();
-              f4.setEnabled(false);
+               f4.setEnabled(false);
                
                Compte c = new Compte(nomc, v) {
                    
@@ -195,14 +195,25 @@ public class creemodf extends Fournisseur{
                fourn.add(f1.getText());
                fourn.add(f2.getText());
                fourn.add(f3.getSelectedItem().toString());
-              fourn.add(f4.getText());
+               fourn.add(f4.getText());
                
+                if (r1.isSelected()) {
+                    fourn.add("Actif");
+
+                } else if (r2.isSelected()) {
+                    fourn.add("Fermer");
+
+                } else if (r3.isSelected()) {
+                    fourn.add("Suspendu");
+                }
+
+              
                ArrayList<ArrayList> fourns = new ArrayList<ArrayList>();
                fourns.add(fourn);
                
                String liste= fourns.get(0).toString();
               try{
-                   FileWriter writer = new FileWriter("creemodf"+f1.getText()+".txt", true);
+                   FileWriter writer = new FileWriter("creemodf.txt", true);
                    writer.write(System.getProperty("line.separator"));
                    writer.write(liste);
                    
@@ -211,6 +222,7 @@ public class creemodf extends Fournisseur{
                    JOptionPane.showMessageDialog(frame, "Succes");
    
                }catch(Exception e){
+                   
                    JOptionPane.showMessageDialog(frame, "Error");
                }
                

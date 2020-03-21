@@ -1,22 +1,40 @@
 package projet3;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.swing.JTextField;
 
-public class Paiement extends Transactionf {
+public abstract class Paiement implements Serializable, Comparable {
 
-    public Paiement(String mp, int ns, String des, Date dt, int nt, double m, Fournisseur f) {
+   
+    private static int nopaie=-1;
+    private String description;
+    private Date datePaiement;
+    private double montant;
 
-        super(mp, ns, des, dt, nt, m, f);
+    public Paiement(String dt, String frn) {
+    nopaie++;
+    description=dt;
+    montant=0.0;
+       
+       
 
     }
 
-    public String toString() {
-        return super.toString();
+    public void toString(JTextField nv, JTextField dt, JTextField s) {
+        nv.setText(nopaie + "");
+       dt.setText(description+"Recu pour numero "+"<<"+nopaie+">>");
+        s.setText(montant + "");
     }
 
-    @Override
-    public int compareTo(Object t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    
+    public void miseAJourCompte() {
+        
+    }
+
+   
+    public void compareTo() {
+        
     }
 
 }

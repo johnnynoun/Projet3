@@ -23,17 +23,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class rappv {
     
+       JPanel p, up, sp, ce, np, tp;
+       JLabel l1, l2, e, e1, e2, e3, e4, e5, cl;
+       JButton b1, b2;
+       JTextField f1, f2;
+       JTable table;
+       JFrame frame;
+       
+    
+    
+    
     public rappv(JFrame f){
       JFrame frame = f;
       
        frame.getContentPane().removeAll();
 
-                JPanel p, up, sp, ce, np, tp;
-                JLabel l1, l2, e, e1, e2, e3, e4, e5, cl;
-                JButton b1, b2;
-
-                JTextField f1, f2;
-                JTable table;
 
                 p = new JPanel(new BorderLayout());
                 frame.setLayout(new FlowLayout());
@@ -63,6 +67,8 @@ public class rappv {
 
                 b1 = new JButton("Quitter");
                 b2 = new JButton("OK");
+                
+                 b1.addActionListener(new ButtonListener());
 
                 l1 = new JLabel("        De date");
                 l2 = new JLabel("                    A date");
@@ -116,6 +122,18 @@ public class rappv {
 
                 frame.setVisible(true);
                 frame.pack();
+    }
+    
+        public class ButtonListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent event) {
+            Object ob = event.getSource();
+            if (ob== b1){
+              
+              quitter q = new quitter(frame);  
+            }
+            
+        }
     }
     
 }

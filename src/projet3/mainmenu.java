@@ -151,7 +151,9 @@ public class mainmenu extends JFrame {
             // VENTES     
             if (ob == i11) {
                
-                creemodv cmv = new creemodv(frame);
+               String dt = null ;
+                String cln = null;
+                creemodv cmv = new creemodv(frame, dt, cln);
 
             }
 
@@ -159,8 +161,9 @@ public class mainmenu extends JFrame {
             // *********************************************************    
             // ACHATS     
             if (ob == i13) {
-                         
-                creemoda cma = new creemoda(frame);
+                String dt = null ;
+                String frn = null;      
+                creemoda cma = new creemoda(frame, dt, frn);
                         
             }
 
@@ -169,8 +172,9 @@ public class mainmenu extends JFrame {
             // *********************************************************    
             // RECUS    
             if (ob == i15) {
-            
-                creemodr cmr = new creemodr(frame);
+                String dt = null ;
+                String cln = null;
+                creemodr cmr = new creemodr(frame, dt, cln);
 
             }
 
@@ -179,8 +183,9 @@ public class mainmenu extends JFrame {
             // *********************************************************  
             // Paiement
             if (ob == i17) {
-                  
-                creemodp cmp = new creemodp(frame);
+                String dt = null ;
+                String frn = null;      
+                creemodp cmp = new creemodp(frame, dt, frn);
 
             }
 

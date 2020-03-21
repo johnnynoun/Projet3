@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 public abstract class Compte implements Serializable, Comparable {
 
     private static String etatcompte;
-    private static int noserie = 0;
+    private static int noserie = -1;
     private int nocompte;
     private String nomcompte;
     private Double solde;

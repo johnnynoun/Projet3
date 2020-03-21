@@ -25,17 +25,20 @@ import javax.swing.table.DefaultTableModel;
 
 public class rappsa {
     
+       JPanel p, up, sp, ce, np, tp, cb1, cb2;
+       JLabel l1, l2, e, e1, e2, e3, e4, e5, e6, e7, e8, cl, vl, bl1, bl2;
+       JButton b1, b2;
+       JCheckBox c1, c2;
+       JTextField f1, f2;
+       JTable table;
+       JFrame frame;
+    
     public rappsa(JFrame f){
         JFrame frame = f;
         
         frame.getContentPane().removeAll();
 
-                JPanel p, up, sp, ce, np, tp, cb1, cb2;
-                JLabel l1, l2, e, e1, e2, e3, e4, e5, e6, e7, e8, cl, vl, bl1, bl2;
-                JButton b1, b2;
-                JCheckBox c1, c2;
-                JTextField f1, f2;
-                JTable table;
+             
 
                 p = new JPanel(new BorderLayout());
                 frame.setLayout(new FlowLayout());
@@ -71,6 +74,8 @@ public class rappsa {
 
                 b1 = new JButton("Quitter");
                 b2 = new JButton("OK");
+                
+                b1.addActionListener(new ButtonListener());
 
                 l1 = new JLabel("        De date");
                 l2 = new JLabel("                 A date");
@@ -147,4 +152,17 @@ public class rappsa {
                 frame.pack();
                 
     }
+    
+      public class ButtonListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent event) {
+            Object ob = event.getSource();
+            if (ob== b1){
+              
+              quitter q = new quitter(frame);  
+            }
+            
+        }
+    }
+   
 }

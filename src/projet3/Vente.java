@@ -1,26 +1,40 @@
 package projet3;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.swing.JTextField;
 
-public class Vente extends Transactioncl {
+public abstract class Vente implements Serializable, Comparable {
 
-    public Vente(String mp, int ns, String des, Date dt, int nt, double m, Client cl) {
+   
+    private static int novente=-1;
+    private String description;
+    private Date dateVente;
+    private double montant;
 
-        super(mp, ns, des, dt, nt, m, cl);
+    public Vente(String dt, String cln) {
+    novente++;
+    description=dt;
+    montant=0.0;
+       
+       
 
     }
 
-    public String toString() {
-        return super.toString();
+    public void toString(JTextField nv, JTextField dt, JTextField s) {
+        nv.setText(novente+ "");
+       dt.setText(description+"Product number "+"<<"+novente+">>");
+        s.setText(montant + "");
     }
 
+    
     public void miseAJourCompte() {
-        super.miseAJourCompte();
+        
     }
 
-    @Override
-    public int compareTo(Object t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+   
+    public void compareTo() {
+        
     }
 
 }

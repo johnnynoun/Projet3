@@ -17,21 +17,20 @@ public class creemodcl extends Client{
                 JLabel l1, l2, l3, l4, e, e1, e2, e3, e4, e5, r;
                 JButton b1, b2, b3;
                 JList t;
-                JRadioButton mode, r1, r2, r3;
+                JRadioButton r1, r2, r3;
                 JTextField f1, f2, f4;
                 JComboBox <String> f3;
                 JTable table;
                 JFrame frame;
                 
                 
+                
     public creemodcl(JFrame f,String nmc, String v){
         super(nmc, v);
         
         JFrame frame = f;
-        
-         frame.getContentPane().removeAll();
+             frame.getContentPane().removeAll();
 
-                
 
                 p = new JPanel(new BorderLayout());
                 frame.setLayout(new FlowLayout());
@@ -177,14 +176,12 @@ public class creemodcl extends Client{
            
             if (ob == b1){
                
-             b1.setEnabled(false);
+               b1.setEnabled(false);
                f1.setEnabled(false);
                String nomc= f2.getText();
                String v =f3.getSelectedItem().toString();
                f4.setEnabled(false);
-         
-              
-               
+  
                Compte c = new Compte(nomc, v) {
                    
                     public int compareTo(Object t) {
@@ -202,13 +199,24 @@ public class creemodcl extends Client{
                clients.add(f2.getText());
                clients.add(f3.getSelectedItem().toString());  
                clients.add(f4.getText());
+               
+               if(r1.isSelected() ){
+                   clients.add("Actif");
+                   
+               }else if(r2.isSelected() ){
+                   clients.add("Fermer");
+                   
+               }else if (r3.isSelected()){
+                   clients.add("Suspendu");
+               }
+               
            
                ArrayList<ArrayList> clientss = new ArrayList<ArrayList>();
                clientss.add(clients);
                
                String liste= clientss.get(0).toString();
               try{
-                   FileWriter writer = new FileWriter("creemodcl"+f1.getText()+".txt", true);
+                   FileWriter writer = new FileWriter("creemodcl.txt", true);
                    writer.write(System.getProperty("line.separator"));
                    writer.write(liste);
                    
@@ -224,7 +232,7 @@ public class creemodcl extends Client{
                f2.setText(null);
                f3.setSelectedIndex(0);
                f4.setText(null);
-             
+         
                
            }
            

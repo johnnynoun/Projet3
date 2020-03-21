@@ -5,9 +5,12 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.event.*;
 import java.awt.*;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
-public class creemodp {
+public class creemodp extends Paiement{
     
        JPanel p, rp, cc, tx, b, tp;
                 JLabel l1, l2, l3, l4, cl, e, e1, e2, e3, e4, e5, r;
@@ -15,12 +18,14 @@ public class creemodp {
                  JList t;
                 JRadioButton r1, r2, r3;
                 JTextField f1, f2, f3, f4;
+                JComboBox c;
                 JFrame frame;
                 
-    public creemodp(JFrame f){
+    public creemodp(JFrame f, String dt, String cln){
+            super(dt,cln);
+            
         JFrame frame= f;
-        
-         frame.getContentPane().removeAll();
+            frame.getContentPane().removeAll();
 
              
 
@@ -35,7 +40,7 @@ public class creemodp {
 
                 cl = new JLabel("Choisir Fournisseur  ");
 
-                JComboBox<String> c = new JComboBox<>();
+                c = new JComboBox<>();
                 c.addItem("                                                 ");
 
                 b1 = new JButton("Creer");
@@ -43,6 +48,7 @@ public class creemodp {
                 b3 = new JButton("Quitter");
 
                 b1.addActionListener(new ButtonListener());
+                b2.addActionListener(new ButtonListener());
                 b3.addActionListener(new ButtonListener());
                 
                 t = new JList();
@@ -67,6 +73,7 @@ public class creemodp {
                 f1 = new JTextField(15);
                 f2 = new JTextField(15);
                 f3 = new JTextField(15);
+                f3.setToolTipText("dd/mm/yyyy");
                 f4 = new JTextField(15);
 
                 r = new JLabel("Mode Paiement  ");
@@ -133,20 +140,81 @@ public class creemodp {
                 frame.pack();
 
     }
+
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
        public class ButtonListener implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             Object ob = event.getSource();
            
-            if(ob == b1){
-                
+            if (ob == b1){  
+                b1.setEnabled(false);
+               f1.setEnabled(false);
+               String dt = f3.getText();
+               f2.setEnabled(false);
+               f4.setEnabled(false);
+               String frn =c.getSelectedItem().toString();
+               
+                 
+               Paiement p = new Paiement(dt, frn) {
+                   
+                    public int compareTo(Object p) {
+                            throw new UnsupportedOperationException("Not supported yet.");
+                    }
+            };
+             p.toString(f1, f2, f4);
+               
+               
+            }
+            
+             if (ob == b2){
+         b1.setEnabled(true);
+   
+         ArrayList<String> paie= new ArrayList<String>();
+               paie.add(f1.getText());
+               paie.add(f2.getText());
+               paie.add(c.getSelectedItem().toString());  
+               paie.add(f3.getText());
+               paie.add(f4.getText());
+               
+                if(r1.isSelected() ){
+                   paie.add("Cash");
+                   
+               }else if(r2.isSelected() ){
+                   paie.add("Cheque");
+                   
+               }else if (r3.isSelected()){
+                   paie.add("Transfert");
+               }
+               
+               ArrayList<ArrayList> paies = new ArrayList<ArrayList>();
+               paies.add(paie);
+               
+               String liste= paies.get(0).toString();
+              try{
+                   FileWriter writer = new FileWriter("creemodp.txt", true);
+                   writer.write(System.getProperty("line.separator"));
+                   writer.write(liste);
+                   
+                   writer.close();
+                   
+                   JOptionPane.showMessageDialog(frame, "Succes");
+   
+               }catch(Exception e){
+                   JOptionPane.showMessageDialog(frame, "Error");
+               }
+               
                f1.setText(null);
                f2.setText(null);
                f3.setText(null);
+               c.setSelectedIndex(0);
                f4.setText(null);
+               
             }
-            
             
             if (ob== b3){
               

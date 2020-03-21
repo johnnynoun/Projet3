@@ -8,7 +8,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
-public class catartstock {
+
+public class catartstock extends Article {
    
     JPanel p, rp, cc, tx, b, tp;
                 JLabel l1, l2, e, e1, e2, e3;
@@ -19,10 +20,11 @@ public class catartstock {
                 JFrame frame;
                 
                 
-    public catartstock(JFrame f){
-        JFrame frame = f;
+    public catartstock(JFrame f, int ns, int na, String noma, int qus, Double pv, Double ca, Double tpf){
+        super(ns, na, noma, qus, pv, ca, tpf);
         
-         frame.getContentPane().removeAll();
+        JFrame frame = f;
+             frame.getContentPane().removeAll();
 
                 
 
@@ -54,6 +56,7 @@ public class catartstock {
                 b3 = new JButton("Quitter");
                 
                 b1.addActionListener(new ButtonListener());
+                b2.addActionListener(new ButtonListener());
                 b3.addActionListener(new ButtonListener());
 
                 t = new JList();
@@ -126,13 +129,17 @@ public class catartstock {
         public void actionPerformed(ActionEvent event) {
             Object ob = event.getSource();
            
-            if ( ob== b1){
-                
-               f1.setText(null);
-               f2.setText(null);
+               if (ob == b1){
               
-                
+               
             }
+            
+             if (ob == b2){
+              
+               
+            }
+            
+         
             
             
             if (ob== b3){
